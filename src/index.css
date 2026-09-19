@@ -32,7 +32,7 @@ button {
 
   padding: 0.75rem 0.2rem;
 
-  background-color: rgba(from white r g b / 0.1);
+  background-color: var(--primary);
   border: none;
   border-radius: 0.8rem;
 
@@ -40,5 +40,10 @@ button {
 }
 
 button:hover {
-  background-color: rgba(from white r g b / 0.15);
+  background-color: hsl(from var(--primary) h s calc(l*1.2));
+}
+
+button:disabled {
+  opacity: 0.4;
+  pointer-events: none;
 }
