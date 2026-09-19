@@ -9,7 +9,6 @@ let uniqueNodeNumber = 0;
 function Canvas({ currentModeState, nodesState, selectedNodeState }) {
     const [currentMode, setCurrentMode] = currentModeState;
     const [nodes, setNodes] = nodesState;
-    const [selectedNode, setSelectedNode] = selectedNodeState;
     const [edges, setEdges] = useState(new Map());
 
     useEffect(() => {
@@ -30,7 +29,7 @@ function Canvas({ currentModeState, nodesState, selectedNodeState }) {
             });
         });
         setEdges(newEdges);
-    }, [currentMode]);
+    }, [nodes]);
 
     return (
         <section className={`canvasSection ${currentMode}Mode`} onClick={e => interactWithCanvas(e, currentMode, nodesState)}>
