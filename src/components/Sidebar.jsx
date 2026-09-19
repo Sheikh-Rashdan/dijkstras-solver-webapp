@@ -4,11 +4,10 @@ import { MinusSquare, PlusSquare, Connector, CursorClick } from '@boxicons/react
 function Sidebar({ currentModeState, selectedNodeState }) {
     const [currentMode, setCurrentMode] = currentModeState;
     const [selectedNode, setSelectedNode] = selectedNodeState;
-    const connectActive = selectedNode !== undefined && currentMode !== "connect";
 
-    function onConnectClicked() {
-        setCurrentMode("connect");
-    }
+    const connectActive = currentMode === "connect";
+    const nodeSelected = selectedNode !== undefined;
+    const canConnect = nodeSelected && !connectActive;
 
     return (
         <section className="sidebarSection">
@@ -26,10 +25,15 @@ function Sidebar({ currentModeState, selectedNodeState }) {
                     Select
                 </ToggleButton>
             </div>
-            <button disabled={!connectActive} onClick={onConnectClicked}>
+            <ToggleButton
+                identifier={"connect"}
+                activeElementState={currentModeState}
+                horizontal={true}
+                disabled={!canConnect}
+            >
                 <Connector pack="filled" />
-                Connect
-            </button>
+                {connectActive ? "Connecting" : "Connect"}
+            </ToggleButton>
         </section>
     );
 }
