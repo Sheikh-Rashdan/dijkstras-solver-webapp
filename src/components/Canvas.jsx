@@ -1,4 +1,5 @@
 import "./Canvas.css";
+import Node from "../scripts/Node";
 
 let uniqueNodeNumber = 0;
 
@@ -8,7 +9,17 @@ function Canvas({ currentModeState, nodesState, selectedNodeState }) {
 
     return (
         <section className="canvasSection" onClick={e => interactWithCanvas(e, currentMode, nodesState)}>
-            {nodes.map(({ id, pos }) => <Node key={id} id={id} pos={pos} currentMode={currentMode} nodesState={nodesState} selectedNodeState={selectedNodeState} />)}
+            {nodes.map(node => {
+                return (
+                    <NodeDiv
+                        key={node.id}
+                        node={node}
+                        currentMode={currentMode}
+                        nodesState={nodesState}
+                        selectedNodeState={selectedNodeState}
+                    />
+                );
+            })}
         </section>
     );
 }
@@ -20,11 +31,11 @@ function addNode(e, nodesState) {
     let flag = false;
     nodes.forEach(node => {
         if (flag === true) return;
-        if (node[0] === offset[0] && node[1] === offset[1]) flag = true;
+        if (node.pos[0] === offset[0] && node.pos[1] === offset[1]) flag = true;
     });
     if (flag) return;
 
-    const nodeObj = { "id": uniqueNodeNumber, pos: offset };
+    const nodeObj = new Node(uniqueNodeNumber, offset);
 
     const newNodes = [...nodes];
     newNodes.push(nodeObj);
@@ -40,11 +51,12 @@ function interactWithCanvas(e, currentMode, nodesState) {
     }
 }
 
-function Node({ id, pos, currentMode, nodesState, selectedNodeState }) {
-    const left = `${pos[0] - 24}px`;
-    const top = `${pos[1] - 24}px`;
+function NodeDiv({ node, currentMode, nodesState, selectedNodeState }) {
     const [nodes, setNodes] = nodesState;
     const [selectedNode, setSelectedNode] = selectedNodeState;
+
+    const left = `${node.pos[0] - 24}px`;
+    const top = `${node.pos[1] - 24}px`;
 
     function interactWithNode() {
         switch (currentMode) {
@@ -58,29 +70,29 @@ function Node({ id, pos, currentMode, nodesState, selectedNodeState }) {
     }
 
     function removeNode() {
-        const newNodes = nodes.filter(node => {
-            return !(node.id === id);
+        const newNodes = nodes.filter(currentNode => {
+            return !(currentNode.id === node.id);
         });
         setNodes(newNodes);
 
-        if (selectedNode?.id === id) {
+        if (selectedNode?.id === node.id) {
             setSelectedNode(undefined);
         }
     }
 
     function selectNode() {
-        const currentNode = nodes.find(node => node.id === id);
+        const currentNode = nodes.find(currentNode => currentNode.id === node.id);
         if (currentNode === undefined) return;
         setSelectedNode(currentNode);
     }
 
     return (
         <div
-            className={`node ${currentMode}Mode ${selectedNode?.id === id ? "selected" : ""}`}
+            className={`node ${currentMode}Mode ${selectedNode?.id === node.id ? "selected" : ""}`}
             style={{ "left": left, "top": top }}
             onClick={interactWithNode}
         >
-            {id}
+            {node.id}
         </div>
     );
 }
