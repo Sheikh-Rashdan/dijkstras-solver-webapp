@@ -21,7 +21,7 @@ function Canvas({ currentModeState, nodesState, selectedNodeState }) {
                 let finishId = neighbourNode.id;
                 let finishPos = neighbourNode.pos;
 
-                if ((startPos[0] + startPos[1]) < (finishPos[0] + finishPos[1])) {
+                if (startId < finishId) {
                     [startId, finishId] = [finishId, startId];
                     [startPos, finishPos] = [finishPos, startPos];
                 }
