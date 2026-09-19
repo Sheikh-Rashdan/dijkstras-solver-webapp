@@ -2,6 +2,17 @@ import "./Canvas.css";
 
 let uniqueNodeNumber = 0;
 
+function Canvas({ currentModeState, nodesState, selectedNodeState }) {
+    const [currentMode, setCurrentMode] = currentModeState;
+    const [nodes, setNodes] = nodesState;
+
+    return (
+        <section className="canvasSection" onClick={e => interactWithCanvas(e, currentMode, nodesState)}>
+            {nodes.map(({ id, pos }) => <Node key={id} id={id} pos={pos} currentMode={currentMode} nodesState={nodesState} selectedNodeState={selectedNodeState} />)}
+        </section>
+    );
+}
+
 function addNode(e, nodesState) {
     const offset = [e.nativeEvent.offsetX, e.nativeEvent.offsetY];
     const [nodes, setNodes] = nodesState;
@@ -29,36 +40,45 @@ function interactWithCanvas(e, currentMode, nodesState) {
     }
 }
 
-function Canvas({ currentModeState, nodesState }) {
-    const [currentMode, setCurrentMode] = currentModeState;
-    const [nodes, setNodes] = nodesState;
-
-    return (
-        <section className="canvasSection" onClick={e => interactWithCanvas(e, currentMode, nodesState)}>
-            {nodes.map(({ id, pos }) => <Node key={id} id={id} pos={pos} currentMode={currentMode} nodesState={nodesState} />)}
-        </section>
-    );
-}
-
-function Node({ id, pos, currentMode, nodesState }) {
+function Node({ id, pos, currentMode, nodesState, selectedNodeState }) {
     const left = `${pos[0] - 24}px`;
     const top = `${pos[1] - 24}px`;
+    const [nodes, setNodes] = nodesState;
+    const [selectedNode, setSelectedNode] = selectedNodeState;
 
-    function onClick(currentMode, nodesState) {
-        const [nodes, setNodes] = nodesState;
+    function interactWithNode() {
+        switch (currentMode) {
+            case "remove":
+                removeNode();
+                break;
+            case "select":
+                selectNode();
+                break;
+        }
+    }
 
-        if (currentMode !== "remove") return;
-        let newNodes = nodes.filter(node => {
+    function removeNode() {
+        const newNodes = nodes.filter(node => {
             return !(node.id === id);
         });
         setNodes(newNodes);
+
+        if (selectedNode?.id === id) {
+            setSelectedNode(undefined);
+        }
+    }
+
+    function selectNode() {
+        const currentNode = nodes.find(node => node.id === id);
+        if (currentNode === undefined) return;
+        setSelectedNode(currentNode);
     }
 
     return (
         <div
-            className={`node ${currentMode}Mode`}
+            className={`node ${currentMode}Mode ${selectedNode?.id === id ? "selected" : ""}`}
             style={{ "left": left, "top": top }}
-            onClick={() => onClick(currentMode, nodesState)}
+            onClick={interactWithNode}
         >
             {id}
         </div>
