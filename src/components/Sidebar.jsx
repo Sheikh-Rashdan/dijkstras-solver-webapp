@@ -1,5 +1,5 @@
 import "./Sidebar.css";
-import { MinusSquare, PlusSquare, Connector, CursorClick } from '@boxicons/react';
+import { MinusSquare, PlusSquare, Connector, CursorClick, Move } from '@boxicons/react';
 
 function Sidebar({ currentModeState, selectedNodeState }) {
     const [currentMode, setCurrentMode] = currentModeState;
@@ -22,6 +22,10 @@ function Sidebar({ currentModeState, selectedNodeState }) {
                 <ToggleButton identifier="select" activeElementState={currentModeState}>
                     <CursorClick pack="filled" size="md" />
                     Select
+                </ToggleButton>
+                <ToggleButton identifier="move" activeElementState={currentModeState}>
+                    <Move pack="filled" size="md" />
+                    Move
                 </ToggleButton>
             </div>
             <ToggleButton
