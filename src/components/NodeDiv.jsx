@@ -48,8 +48,32 @@ function NodeDiv({ node, currentModeState, nodesState, selectedNodeState }) {
 
         node.addNeighbour(selectedNode, 5);
 
+        const newNodes = [...nodes];
+        setNodes(newNodes);
         setCurrentMode("select");
         setSelectedNode(undefined);
+    }
+
+
+    function onDrag({ clientX, clientY, nativeEvent }) {
+        if (clientX === 0 && clientY === 0) return;
+
+        const [x, y] = [nativeEvent.offsetX - 24, nativeEvent.offsetY - 24];
+        const newPos = [node.pos[0] + x, node.pos[1] + y];
+        node.pos = newPos;
+
+        const newNodes = [...nodes];
+        setNodes(newNodes);
+    }
+
+    function onDragStart({ dataTransfer }) {
+        const dragImage = document.createElement("div");
+        dragImage.style.position = "absolute";
+        dragImage.style.top = "-9999px";
+        dragImage.style.width = "1px";
+        dragImage.style.height = "1px";
+        document.body.appendChild(dragImage);
+        dataTransfer.setDragImage(dragImage, 0, 0);
     }
 
     return (
@@ -57,8 +81,9 @@ function NodeDiv({ node, currentModeState, nodesState, selectedNodeState }) {
             className={`node ${currentMode}Mode ${selectedNode?.id === node.id ? "selected" : ""}`}
             style={{ "left": left, "top": top }}
             onClick={interactWithNode}
-            // MARK: implement dragging
             draggable={currentMode === "move"}
+            onDrag={onDrag}
+            onDragStart={onDragStart}
         >
             {node.id}
         </div>
