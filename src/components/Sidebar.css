@@ -23,6 +23,10 @@
     background-color: var(--border);
 }
 
+.toggleButton.horizontal {
+    flex-direction: row;
+}
+
 .toggleButton:hover {
     background-color: hsl(from var(--border) h s calc(l*1.2));
 }
