@@ -35,8 +35,9 @@
     color: var(--text);
 }
 
-.node.selectMode:hover {
-    background-color: hsl(from var(--primary) h s calc(l*1.2));
+.node.selectMode:hover,
+.node.connectMode:hover {
+    background-color: hsl(from var(--secondary) h s calc(l*1.2));
     color: var(--text);
     transform: scale(1.05);
 }
