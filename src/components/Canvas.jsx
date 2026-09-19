@@ -8,7 +8,7 @@ function Canvas({ currentModeState, nodesState, selectedNodeState }) {
     const [nodes, setNodes] = nodesState;
 
     return (
-        <section className="canvasSection" onClick={e => interactWithCanvas(e, currentMode, nodesState)}>
+        <section className={`canvasSection ${currentMode}Mode`} onClick={e => interactWithCanvas(e, currentMode, nodesState)}>
             {nodes.map(node => {
                 return (
                     <NodeDiv
