@@ -7,7 +7,6 @@ function Sidebar({ currentModeState, selectedNodeState }) {
 
     const connectActive = currentMode === "connect";
     const nodeSelected = selectedNode !== undefined;
-    const canConnect = nodeSelected && !connectActive;
 
     return (
         <section className="sidebarSection">
@@ -29,7 +28,7 @@ function Sidebar({ currentModeState, selectedNodeState }) {
                 identifier={"connect"}
                 activeElementState={currentModeState}
                 horizontal={true}
-                disabled={!canConnect}
+                disabled={!nodeSelected}
             >
                 <Connector pack="filled" />
                 {connectActive ? "Connecting" : "Connect"}
