@@ -1,13 +1,44 @@
 :root {
   --text: rgb(235 235 235);
   --bg: rgb(20 20 20);
+  --border: rgb(60 60 60);
+  --primary: rgb(52 171 127);
+  --delete: rgb(150, 20, 20);
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   color: var(--text);
+  overflow: hidden;
+  font-family: "Poppins", Arial;
+  font-weight: 400;
 }
 
 body {
+  margin: 3rem;
   background-color: var(--bg);
+
+  @media screen and (max-width: 768px) {
+    margin: 1rem;
+  }
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.15rem;
+
+  padding: 0.75rem 0.2rem;
+
+  background-color: rgba(from white r g b / 0.1);
+  border: none;
+  border-radius: 0.8rem;
+
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgba(from white r g b / 0.15);
 }
