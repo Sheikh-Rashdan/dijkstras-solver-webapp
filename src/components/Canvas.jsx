@@ -81,9 +81,12 @@ function NodeDiv({ node, currentMode, nodesState, selectedNodeState }) {
     }
 
     function selectNode() {
-        const currentNode = nodes.find(currentNode => currentNode.id === node.id);
-        if (currentNode === undefined) return;
-        setSelectedNode(currentNode);
+        if (node.id === selectedNode?.id) {
+            setSelectedNode(undefined);
+            return;
+        }
+
+        setSelectedNode(node);
     }
 
     return (
