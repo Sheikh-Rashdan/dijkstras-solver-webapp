@@ -56,7 +56,7 @@ function Node({ id, pos, currentMode, nodesState }) {
 
     return (
         <div
-            className={`node ${currentMode === "remove" ? "removeMode" : ""}`}
+            className={`node ${currentMode}Mode`}
             style={{ "left": left, "top": top }}
             onClick={() => onClick(currentMode, nodesState)}
         >
