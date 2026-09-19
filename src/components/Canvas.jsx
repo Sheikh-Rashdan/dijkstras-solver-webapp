@@ -14,7 +14,7 @@ function Canvas({ currentModeState, nodesState, selectedNodeState }) {
                     <NodeDiv
                         key={node.id}
                         node={node}
-                        currentMode={currentMode}
+                        currentModeState={currentModeState}
                         nodesState={nodesState}
                         selectedNodeState={selectedNodeState}
                     />
@@ -51,7 +51,8 @@ function interactWithCanvas(e, currentMode, nodesState) {
     }
 }
 
-function NodeDiv({ node, currentMode, nodesState, selectedNodeState }) {
+function NodeDiv({ node, currentModeState, nodesState, selectedNodeState }) {
+    const [currentMode, setCurrentMode] = currentModeState;
     const [nodes, setNodes] = nodesState;
     const [selectedNode, setSelectedNode] = selectedNodeState;
 
@@ -65,6 +66,9 @@ function NodeDiv({ node, currentMode, nodesState, selectedNodeState }) {
                 break;
             case "select":
                 selectNode();
+                break;
+            case "connect":
+                connectNode();
                 break;
         }
     }
@@ -89,11 +93,23 @@ function NodeDiv({ node, currentMode, nodesState, selectedNodeState }) {
         setSelectedNode(node);
     }
 
+    function connectNode() {
+        if (node.id === selectedNode.id) return;
+        if (Array.from(node.neighbours.keys()).includes(selectedNode)) return;
+
+        node.addNeighbour(selectedNode, 5);
+
+        setCurrentMode("select");
+        setSelectedNode(undefined);
+    }
+
     return (
         <div
             className={`node ${currentMode}Mode ${selectedNode?.id === node.id ? "selected" : ""}`}
             style={{ "left": left, "top": top }}
             onClick={interactWithNode}
+            // MARK: implement dragging
+            draggable={currentMode === "move"}
         >
             {node.id}
         </div>
