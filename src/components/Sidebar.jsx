@@ -34,7 +34,7 @@ function Sidebar({ currentModeState, selectedNodeState }) {
     );
 }
 
-function ToggleButton({ children, identifier, activeElementState }) {
+function ToggleButton({ children, identifier, activeElementState, horizontal = false, disabled = false }) {
     const [activeElement, setActiveElement] = activeElementState;
     const active = identifier == activeElement;
 
@@ -43,7 +43,7 @@ function ToggleButton({ children, identifier, activeElementState }) {
     }
 
     return (
-        <button className={`toggleButton ${active ? "active" : ""}`} onClick={onClick}>
+        <button className={`toggleButton ${active ? "active" : ""} ${horizontal ? "horizontal" : ""}`} onClick={onClick} disabled={disabled}>
             {children}
         </button>
     );
