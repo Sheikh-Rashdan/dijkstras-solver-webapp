@@ -3,7 +3,8 @@
   --bg: rgb(20 20 20);
   --border: rgb(60 60 60);
   --primary: rgb(52 171 127);
-  --delete: rgb(150, 20, 20);
+  --secondary: rgb(180, 121, 11);
+  --delete: rgb(150 20 20);
 }
 
 * {
