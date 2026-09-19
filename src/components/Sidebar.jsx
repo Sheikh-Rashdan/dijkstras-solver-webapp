@@ -1,8 +1,9 @@
 import "./Sidebar.css";
 import { MinusSquare, PlusSquare, Connector, CursorClick } from '@boxicons/react';
 
-function Sidebar({ currentModeState }) {
-    const connectActive = false;
+function Sidebar({ currentModeState, selectedNodeState }) {
+    const [selectedNode, setSelectedNode] = selectedNodeState;
+    const connectActive = selectedNode !== undefined;
 
     return (
         <section className="sidebarSection">
