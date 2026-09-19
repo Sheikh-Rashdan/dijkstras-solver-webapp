@@ -8,3 +8,8 @@
 .canvasSection.addMode {
     cursor: cell;
 }
+
+line {
+    stroke: var(--secondary);
+    stroke-width: 3px;
+}
