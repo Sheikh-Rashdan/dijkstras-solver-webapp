@@ -1,0 +1,26 @@
+.sidebarSection {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    padding: 1rem;
+
+    background-image: linear-gradient(to bottom, transparent, rgba(from white r g b / 0.05));
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+}
+
+.sidebarGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+button {
+    flex-direction: column;
+}
+
+button.active {
+    background-color: var(--primary);
+}
