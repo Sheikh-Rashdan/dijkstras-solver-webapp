@@ -1,0 +1,29 @@
+.canvasSection {
+    position: relative;
+
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    cursor: cell;
+}
+
+.node {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: var(--bg);
+    background-color: var(--text);
+    border-radius: 100svh;
+
+    transition: color 150ms ease-in-out, background-color 150ms ease-in-out;
+}
+
+.node.removeMode:hover {
+    content: "X";
+    background-color: var(--delete);
+    color: var(--text);
+}
