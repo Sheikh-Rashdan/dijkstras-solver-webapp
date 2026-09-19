@@ -3,6 +3,9 @@
 
     border: 1px solid var(--border);
     border-radius: 1rem;
+}
+
+.canvasSection.addMode {
     cursor: cell;
 }
 
