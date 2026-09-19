@@ -2,12 +2,35 @@ import "./Canvas.css";
 import Node from "../scripts/Node";
 
 import NodeDiv from "./NodeDiv";
+import { useEffect, useState } from "react";
 
 let uniqueNodeNumber = 0;
 
 function Canvas({ currentModeState, nodesState, selectedNodeState }) {
     const [currentMode, setCurrentMode] = currentModeState;
     const [nodes, setNodes] = nodesState;
+    const [selectedNode, setSelectedNode] = selectedNodeState;
+    const [edges, setEdges] = useState(new Map());
+
+    useEffect(() => {
+        const newEdges = new Map(edges);
+        nodes.forEach(node => {
+            node.neighbours.keys().forEach(neighbourNode => {
+                let startPos = node.pos;
+                let startId = node.id;
+
+                let finishId = neighbourNode.id;
+                let finishPos = neighbourNode.pos;
+
+                if ((startPos[0] + startPos[1]) < (finishPos[0] + finishPos[1])) {
+                    [startId, finishId] = [finishId, startId];
+                    [startPos, finishPos] = [finishPos, startPos];
+                }
+                newEdges.set(`${startId}-${finishId}`, [startPos, finishPos]);
+            });
+        });
+        setEdges(newEdges);
+    }, [currentMode]);
 
     return (
         <section className={`canvasSection ${currentMode}Mode`} onClick={e => interactWithCanvas(e, currentMode, nodesState)}>
@@ -22,6 +45,11 @@ function Canvas({ currentModeState, nodesState, selectedNodeState }) {
                     />
                 );
             })}
+            <svg width="100%" height="100%">
+                {Array.from(edges.entries()).map(([key, pos]) => {
+                    return <line key={key} x1={pos[0][0]} y1={pos[0][1]} x2={pos[1][0]} y2={pos[1][1]} />;
+                })}
+            </svg>
         </section>
     );
 }
