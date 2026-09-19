@@ -2,8 +2,13 @@ import "./Sidebar.css";
 import { MinusSquare, PlusSquare, Connector, CursorClick } from '@boxicons/react';
 
 function Sidebar({ currentModeState, selectedNodeState }) {
+    const [currentMode, setCurrentMode] = currentModeState;
     const [selectedNode, setSelectedNode] = selectedNodeState;
-    const connectActive = selectedNode !== undefined;
+    const connectActive = selectedNode !== undefined && currentMode !== "connect";
+
+    function onConnectClicked() {
+        setCurrentMode("connect");
+    }
 
     return (
         <section className="sidebarSection">
@@ -21,7 +26,7 @@ function Sidebar({ currentModeState, selectedNodeState }) {
                     Select
                 </ToggleButton>
             </div>
-            <button disabled={!connectActive}>
+            <button disabled={!connectActive} onClick={onConnectClicked}>
                 <Connector pack="filled" />
                 Connect
             </button>
