@@ -17,10 +17,17 @@
     gap: 0.5rem;
 }
 
-button {
+.toggleButton {
     flex-direction: column;
+
+    background-color: var(--border);
 }
 
-button.active {
+.toggleButton:hover {
+    background-color: hsl(from var(--border) h s calc(l*1.2));
+}
+
+.toggleButton.active {
     background-color: var(--primary);
+    cursor: default;
 }
