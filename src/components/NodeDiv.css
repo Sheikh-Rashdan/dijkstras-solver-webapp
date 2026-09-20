@@ -13,6 +13,7 @@
 
     transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-out;
     cursor: pointer;
+    user-select: none;
 }
 
 .node.addMode {
