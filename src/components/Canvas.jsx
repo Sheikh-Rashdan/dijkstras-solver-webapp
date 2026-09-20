@@ -38,15 +38,25 @@ function Canvas({ currentModeState, nodesState, selectedNodeState }) {
         setNodes(newNodes);
     }
 
-    function onPointerMove({ clientX, clientY }) {
+    function dragNode(x, y) {
         if (draggingNode === null) return;
 
-        const newX = draggingNode.dragPos[0] + clientX - draggingNode.clientPos[0];
-        const newY = draggingNode.dragPos[1] + clientY - draggingNode.clientPos[1];
+        const newX = draggingNode.dragPos[0] + x - draggingNode.clientPos[0];
+        const newY = draggingNode.dragPos[1] + y - draggingNode.clientPos[1];
         draggingNode.pos = [newX, newY];
 
         const newNodes = [...nodes];
         setNodes(newNodes);
+    }
+
+    function onPointerMove({ clientX, clientY }) {
+        dragNode(clientX, clientY);
+    }
+
+    function onTouchMove({ touches }) {
+        const touch = touches[0];
+        const [x, y] = [touch.clientX, touch.clientY];
+        dragNode(x, y);
     }
 
     function onPointerUp() {
@@ -79,6 +89,8 @@ function Canvas({ currentModeState, nodesState, selectedNodeState }) {
             onClick={e => interactWithCanvas(e, currentMode, nodesState)}
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onPointerUp}
         >
             {nodes.map(node => {
                 return (
