@@ -1,8 +1,14 @@
 class Node {
   constructor(id, pos) {
+    // drawing
     this.id = id;
     this.pos = pos
 
+    // dragging
+    this.dragPos = null;
+    this.clientPos = null;
+
+    // dijkstras
     this.neighbours = new Map();
     this.visited = false;
     this.throughNode = null;
