@@ -5,8 +5,8 @@ function NodeDiv({ node, currentModeState, nodesState, selectedNodeState, setDra
     const [nodes, setNodes] = nodesState;
     const [selectedNode, setSelectedNode] = selectedNodeState;
 
-    const left = `${node.pos[0] - 24}px`;
-    const top = `${node.pos[1] - 24}px`;
+    const left = `calc(${node.pos[0]}px - 1.5rem)`;
+    const top = `calc(${node.pos[1]}px - 1.5rem)`;
 
     function interactWithNode() {
         switch (currentMode) {
