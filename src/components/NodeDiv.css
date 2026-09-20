@@ -32,9 +32,11 @@
 .node.selectMode:hover,
 .node.connectMode:hover,
 .node.moveMode:hover {
-    background-color: hsl(from var(--secondary) h s calc(l*1.2));
-    color: var(--text);
-    transform: scale(1.05);
+    @media screen and (min-width: 768px) {
+        background-color: hsl(from var(--secondary) h s calc(l*1.2));
+        color: var(--text);
+        transform: scale(1.05);
+    }
 }
 
 .node.selected {
