@@ -1,6 +1,6 @@
 import "./NodeDiv.css";
 
-function NodeDiv({ node, currentModeState, nodesState, selectedNodeState }) {
+function NodeDiv({ node, currentModeState, nodesState, selectedNodeState, setDraggingNode }) {
     const [currentMode, setCurrentMode] = currentModeState;
     const [nodes, setNodes] = nodesState;
     const [selectedNode, setSelectedNode] = selectedNodeState;
@@ -54,26 +54,12 @@ function NodeDiv({ node, currentModeState, nodesState, selectedNodeState }) {
         setSelectedNode(undefined);
     }
 
-
-    function onDrag({ clientX, clientY, nativeEvent }) {
-        if (clientX === 0 && clientY === 0) return;
-
-        const [x, y] = [nativeEvent.offsetX - 24, nativeEvent.offsetY - 24];
-        const newPos = [node.pos[0] + x, node.pos[1] + y];
-        node.pos = newPos;
-
-        const newNodes = [...nodes];
-        setNodes(newNodes);
-    }
-
-    function onDragStart({ dataTransfer }) {
-        const dragImage = document.createElement("div");
-        dragImage.style.position = "absolute";
-        dragImage.style.top = "-9999px";
-        dragImage.style.width = "1px";
-        dragImage.style.height = "1px";
-        document.body.appendChild(dragImage);
-        dataTransfer.setDragImage(dragImage, 0, 0);
+    function onPointerDown({ clientX, clientY }) {
+        if (currentMode === "move") {
+            node.dragPos = node.pos;
+            node.clientPos = [clientX, clientY];
+            setDraggingNode(node);
+        }
     }
 
     return (
@@ -81,9 +67,7 @@ function NodeDiv({ node, currentModeState, nodesState, selectedNodeState }) {
             className={`node ${currentMode}Mode ${selectedNode?.id === node.id ? "selected" : ""}`}
             style={{ "left": left, "top": top }}
             onClick={interactWithNode}
-            draggable={currentMode === "move"}
-            onDrag={onDrag}
-            onDragStart={onDragStart}
+            onPointerDown={onPointerDown}
         >
             {node.id}
         </div>
