@@ -3,7 +3,6 @@ import Node from "../scripts/Node";
 
 import NodeDiv from "./NodeDiv";
 import { useEffect, useState } from "react";
-import { C } from "@boxicons/react";
 
 let uniqueNodeNumber = 0;
 
@@ -64,7 +63,7 @@ function Canvas({ currentModeState, nodesState, selectedNodeState }) {
     }
 
     useEffect(() => {
-        const newEdges = new Map(edges);
+        const newEdges = new Map();
         nodes.forEach(node => {
             node.neighbours.keys().forEach(neighbourNode => {
                 let startPos = node.pos;
