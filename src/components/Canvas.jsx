@@ -3,6 +3,7 @@ import Node from "../scripts/Node";
 
 import NodeDiv from "./NodeDiv";
 import { useEffect, useState } from "react";
+import Edge from "../scripts/Edge";
 
 let uniqueNodeNumber = 0;
 
@@ -76,7 +77,12 @@ function Canvas({ currentModeState, nodesState, selectedNodeState }) {
                     [startId, finishId] = [finishId, startId];
                     [startPos, finishPos] = [finishPos, startPos];
                 }
-                newEdges.set(`${startId}-${finishId}`, [startPos, finishPos]);
+
+                const shortest = neighbourNode.throughNode?.id == node.id || node.throughNode?.id == neighbourNode.id;
+
+                const edge = new Edge(`${startId}-${finishId}`, startPos, finishPos, shortest);
+
+                newEdges.set(`${startId}-${finishId}`, edge);
             });
         });
         setEdges(newEdges);
@@ -104,8 +110,17 @@ function Canvas({ currentModeState, nodesState, selectedNodeState }) {
                 );
             })}
             <svg width="100%" height="100%">
-                {Array.from(edges.entries()).map(([key, pos]) => {
-                    return <line key={key} x1={pos[0][0]} y1={pos[0][1]} x2={pos[1][0]} y2={pos[1][1]} />;
+                {Array.from(edges.entries()).map(([key, currentEdge]) => {
+                    return (
+                        <line
+                            key={key}
+                            className={`${currentEdge.highlight ? "highlight" : ""}`}
+                            x1={currentEdge.startPos[0]}
+                            y1={currentEdge.startPos[1]}
+                            x2={currentEdge.finishPos[0]}
+                            y2={currentEdge.finishPos[1]}
+                        />
+                    );
                 })}
             </svg>
         </section>
