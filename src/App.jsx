@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       <div className="mainContainer">
-        <Sidebar currentModeState={currentModeState} selectedNodeState={selectedNodeState} inputWeightState={inputWeightState} isWeightInputErrorState={isWeightInputErrorState} runDijkstras={runDijkstras} />
+        <Sidebar currentModeState={currentModeState} selectedNodeState={selectedNodeState} inputWeightState={inputWeightState} isWeightInputErrorState={isWeightInputErrorState} nodesState={nodesState} runDijkstras={runDijkstras} />
         <Canvas currentModeState={currentModeState} nodesState={nodesState} selectedNodeState={selectedNodeState} inputWeightState={inputWeightState} isWeightInputErrorState={isWeightInputErrorState} />
       </div>
     </>

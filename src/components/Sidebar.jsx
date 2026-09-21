@@ -2,11 +2,12 @@ import { useEffect, useRef } from "react";
 import "./Sidebar.css";
 import { MinusSquare, PlusSquare, Connector, CursorClick, Move, ChevronRightCircle } from '@boxicons/react';
 
-function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeightInputErrorState, runDijkstras }) {
+function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeightInputErrorState, nodesState, runDijkstras }) {
     const [currentMode, setCurrentMode] = currentModeState;
     const [selectedNode, setSelectedNode] = selectedNodeState;
     const [inputWeight, setInputWeight] = inputWeightState;
     const [isWeightInputError, setIsWeightInputError] = isWeightInputErrorState;
+    const [nodes, setNodes] = nodesState;
 
     const weightInputRef = useRef(null);
 
@@ -75,10 +76,32 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
             />
             <hr />
             <p className="infoText">Selected: {selectedNode?.id ?? "None"}</p>
-            <hr />
+            <div className="resultsContainer">
+                <p className="resultsTitle">Results:</p>
+                {nodes.some(node => node.shortestDistance !== null)
+                    ? <div className="resultsGrid noScrollbar">
+                        <p>Node</p>
+                        <p>Distance</p>
+                        {nodes.map(node => {
+                            if (!node.shortestDistance) return;
+                            return (
+                                <>
+                                    <p className="result" key={`${node.id}1`}>
+                                        {node.id}
+                                    </p>
+                                    <p className="result" key={`${node.id}2`}>
+                                        {node.shortestDistance}
+                                    </p>
+                                </>
+                            );
+                        })}
+                    </div>
+                    : "N/A"}
+            </div>
+            <hr className="runButtonHr" />
             <button disabled={!nodeSelected || connectActive} onClick={runDijkstras}>
                 <ChevronRightCircle pack="filled" />
-                Start
+                Calculate
             </button>
         </section>
     );
