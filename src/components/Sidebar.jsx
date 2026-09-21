@@ -80,19 +80,21 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
                 <p className="resultsTitle">Results:</p>
                 {nodes.some(node => node.shortestDistance !== null)
                     ? <div className="resultsGrid noScrollbar">
-                        <p>Node</p>
-                        <p>Distance</p>
+                        <div className="resultsPair">
+                            <p>Node</p>
+                            <p>Distance</p>
+                        </div>
                         {nodes.map(node => {
                             if (!node.shortestDistance) return;
                             return (
-                                <>
-                                    <p className="result" key={`${node.id}1`}>
+                                <div className="resultsPair" key={node.id}>
+                                    <p className="result">
                                         {node.id}
                                     </p>
-                                    <p className="result" key={`${node.id}2`}>
+                                    <p className="result">
                                         {node.shortestDistance}
                                     </p>
-                                </>
+                                </div>
                             );
                         })}
                     </div>

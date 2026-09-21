@@ -58,11 +58,16 @@
 
     .resultsGrid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
 
         max-height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
+    }
+
+    .resultsPair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 
     .resultsTitle {
