@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Sidebar.css";
 import { MinusSquare, PlusSquare, Connector, CursorClick, Move, ChevronRightCircle } from '@boxicons/react';
 
@@ -9,6 +9,7 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
     const [isWeightInputError, setIsWeightInputError] = isWeightInputErrorState;
     const [nodes, setNodes] = nodesState;
 
+    const [sortByDistance, setSortByDistance] = useState(false);
     const weightInputRef = useRef(null);
 
     const connectActive = currentMode === "connect";
@@ -81,10 +82,10 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
                 {nodes.some(node => node.shortestDistance !== null)
                     ? <div className="resultsGrid noScrollbar">
                         <div className="resultsPair">
-                            <p>Node</p>
-                            <p>Distance</p>
+                            <p style={{ "cursor": "pointer" }} onClick={() => setSortByDistance(false)}>Node</p>
+                            <p style={{ "cursor": "pointer" }} onClick={() => setSortByDistance(true)}>Distance</p>
                         </div>
-                        {nodes.map(node => {
+                        {(sortByDistance ? [...nodes].sort((a, b) => a.shortestDistance - b.shortestDistance) : nodes).map(node => {
                             if (!node.shortestDistance) return;
                             return (
                                 <div className="resultsPair" key={node.id}>
