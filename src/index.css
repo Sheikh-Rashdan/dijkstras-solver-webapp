@@ -48,3 +48,38 @@ button:disabled {
   opacity: 0.4;
   pointer-events: none;
 }
+
+input {
+  padding: 0.4rem 1rem;
+
+  font-size: 1rem;
+  text-align: center;
+
+  background-color: transparent;
+  outline: none;
+  border: 2px solid var(--border);
+  border-radius: 0.5rem;
+
+  transition-property: border-color, box-shadow, opacity;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input.error {
+  border-color: var(--delete);
+  box-shadow: 0 0 6px 0 var(--delete);
+  opacity: 0.5;
+}
