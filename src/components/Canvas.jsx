@@ -7,9 +7,10 @@ import Edge from "../scripts/Edge";
 
 let uniqueNodeNumber = 0;
 
-function Canvas({ currentModeState, nodesState, selectedNodeState }) {
+function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightState, isWeightInputErrorState }) {
     const [currentMode, setCurrentMode] = currentModeState;
     const [nodes, setNodes] = nodesState;
+    const [inputWeight, setInputWeight] = inputWeightState;
 
     const [edges, setEdges] = useState(new Map());
     const [draggingNode, setDraggingNode] = useState(null);
@@ -104,6 +105,8 @@ function Canvas({ currentModeState, nodesState, selectedNodeState }) {
                         node={node}
                         currentModeState={currentModeState}
                         nodesState={nodesState}
+                        inputWeight={inputWeight}
+                        isWeightInputErrorState={isWeightInputErrorState}
                         selectedNodeState={selectedNodeState}
                         setDraggingNode={setDraggingNode}
                     />

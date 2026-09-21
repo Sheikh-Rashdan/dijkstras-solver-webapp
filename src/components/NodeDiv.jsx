@@ -1,10 +1,11 @@
 import "./NodeDiv.css";
 import { resetDijkstras } from '../scripts/Node.jsx';
 
-function NodeDiv({ node, currentModeState, nodesState, selectedNodeState, setDraggingNode }) {
+function NodeDiv({ node, currentModeState, nodesState, inputWeight, isWeightInputErrorState, selectedNodeState, setDraggingNode }) {
     const [currentMode, setCurrentMode] = currentModeState;
     const [nodes, setNodes] = nodesState;
     const [selectedNode, setSelectedNode] = selectedNodeState;
+    const [isWeightInputError, setIsWeightInputError] = isWeightInputErrorState;
 
     const left = `calc(${node.pos[0]}px - 1.5rem)`;
     const top = `calc(${node.pos[1]}px - 1.5rem)`;
@@ -55,10 +56,14 @@ function NodeDiv({ node, currentModeState, nodesState, selectedNodeState, setDra
 
         resetDijkstras(nodesState);
 
+        if (inputWeight === null || isWeightInputError) {
+            setIsWeightInputError(true);
+            return;
+        }
         if (node.id === selectedNode.id) return;
-        if (Array.from(node.neighbours.keys()).includes(selectedNode)) return;
+        if (node.neighbours.get(selectedNode) === inputWeight) return;
 
-        node.addNeighbour(selectedNode, 5);
+        node.addNeighbour(selectedNode, inputWeight);
 
         const newNodes = [...nodes];
         setNodes(newNodes);
