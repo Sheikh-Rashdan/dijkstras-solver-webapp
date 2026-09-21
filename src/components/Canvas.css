@@ -11,5 +11,10 @@
 
 line {
     stroke: var(--secondary);
-    stroke-width: 3px;
+    stroke-width: 0.1875rem;
+}
+
+line.highlight {
+    stroke: var(--primary);
+    stroke-width: 0.375rem;
 }
