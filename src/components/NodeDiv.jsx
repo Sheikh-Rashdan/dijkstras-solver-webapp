@@ -23,6 +23,8 @@ function NodeDiv({ node, currentModeState, nodesState, selectedNodeState, setDra
     }
 
     function removeNode() {
+        node.neighbours.keys().forEach(neighbourNode => neighbourNode.removeNeighbour(node));
+
         const newNodes = nodes.filter(currentNode => {
             return !(currentNode.id === node.id);
         });
