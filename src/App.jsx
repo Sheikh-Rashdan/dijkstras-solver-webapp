@@ -10,6 +10,8 @@ function App() {
   const currentModeState = useState("add");
   const nodesState = useState([]);
   const selectedNodeState = useState();
+  const inputWeightState = useState(null);
+  const isWeightInputErrorState = useState(false);
 
   function runDijkstras() {
     dijkstrasAlgorithm(nodesState, selectedNodeState[0]);
@@ -18,8 +20,8 @@ function App() {
   return (
     <>
       <div className="mainContainer">
-        <Sidebar currentModeState={currentModeState} selectedNodeState={selectedNodeState} runDijkstras={runDijkstras} />
-        <Canvas currentModeState={currentModeState} nodesState={nodesState} selectedNodeState={selectedNodeState} />
+        <Sidebar currentModeState={currentModeState} selectedNodeState={selectedNodeState} inputWeightState={inputWeightState} isWeightInputErrorState={isWeightInputErrorState} runDijkstras={runDijkstras} />
+        <Canvas currentModeState={currentModeState} nodesState={nodesState} selectedNodeState={selectedNodeState} inputWeightState={inputWeightState} isWeightInputErrorState={isWeightInputErrorState} />
       </div>
     </>
   )
