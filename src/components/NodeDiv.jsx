@@ -52,8 +52,6 @@ function NodeDiv({ node, currentModeState, nodesState, selectedNodeState, setDra
 
         const newNodes = [...nodes];
         setNodes(newNodes);
-        setCurrentMode("select");
-        setSelectedNode(undefined);
     }
 
     function onPointerDown({ clientX, clientY }) {
