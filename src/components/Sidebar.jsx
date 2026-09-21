@@ -1,12 +1,27 @@
 import "./Sidebar.css";
 import { MinusSquare, PlusSquare, Connector, CursorClick, Move, ChevronRightCircle } from '@boxicons/react';
 
-function Sidebar({ currentModeState, selectedNodeState, runDijkstras }) {
+function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeightInputErrorState, runDijkstras }) {
     const [currentMode, setCurrentMode] = currentModeState;
     const [selectedNode, setSelectedNode] = selectedNodeState;
+    const [inputWeight, setInputWeight] = inputWeightState;
+    const [isWeightInputError, setIsWeightInputError] = isWeightInputErrorState;
 
     const connectActive = currentMode === "connect";
     const nodeSelected = selectedNode !== undefined;
+
+    function setWeightFromInput(e) {
+        let weight = null;
+        let isError = false;
+        try {
+            weight = parseFloat(e.target.value);
+            if (weight <= 0 || weight === NaN) throw RangeError("Weight must be greater than 0.");
+        } catch (e) {
+            isError = true;
+        }
+        setInputWeight(weight);
+        setIsWeightInputError(isError);
+    }
 
     return (
         <section className="sidebarSection">
@@ -37,6 +52,14 @@ function Sidebar({ currentModeState, selectedNodeState, runDijkstras }) {
                 <Connector pack="filled" />
                 {connectActive ? "Connecting" : "Connect"}
             </ToggleButton>
+            <input
+                className={`${isWeightInputError ? "error" : ""}`}
+                placeholder="Weight"
+                type="number"
+                min="0"
+                inputMode="numeric"
+                onChange={setWeightFromInput}
+            />
             <button disabled={!nodeSelected || connectActive} onClick={runDijkstras}>
                 <ChevronRightCircle pack="filled" />
                 Start
