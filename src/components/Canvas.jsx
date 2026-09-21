@@ -18,7 +18,7 @@ function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightSt
     function interactWithCanvas({ nativeEvent }) {
         switch (currentMode) {
             case "add":
-                addNode([nativeEvent.offsetX, nativeEvent.offsetY], nodesState)
+                addNode([nativeEvent.offsetX, nativeEvent.offsetY])
                 uniqueNodeNumber++;
                 break;
         }
@@ -92,7 +92,7 @@ function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightSt
     return (
         <section
             className={`canvasSection ${currentMode}Mode`}
-            onClick={e => interactWithCanvas(e, currentMode, nodesState)}
+            onClick={interactWithCanvas}
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
             onTouchMove={onTouchMove}
