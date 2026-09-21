@@ -67,7 +67,7 @@ function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightSt
     useEffect(() => {
         const newEdges = new Map();
         nodes.forEach(node => {
-            node.neighbours.keys().forEach(neighbourNode => {
+            node.neighbours.entries().forEach(([neighbourNode, weight]) => {
                 let startPos = node.pos;
                 let startId = node.id;
 
@@ -81,7 +81,7 @@ function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightSt
 
                 const shortest = neighbourNode.throughNode?.id == node.id || node.throughNode?.id == neighbourNode.id;
 
-                const edge = new Edge(`${startId}-${finishId}`, startPos, finishPos, shortest);
+                const edge = new Edge(`${startId}-${finishId}`, weight, startPos, finishPos, shortest);
 
                 newEdges.set(`${startId}-${finishId}`, edge);
             });
@@ -114,19 +114,30 @@ function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightSt
             })}
             <svg width="100%" height="100%">
                 {Array.from(edges.entries()).map(([key, currentEdge]) => {
+                    const centerx = (currentEdge.startPos[0] + currentEdge.finishPos[0]) / 2;
+                    const centery = (currentEdge.startPos[1] + currentEdge.finishPos[1]) / 2;
                     return (
-                        <line
-                            key={key}
-                            className={`${currentEdge.highlight ? "highlight" : ""}`}
-                            x1={currentEdge.startPos[0]}
-                            y1={currentEdge.startPos[1]}
-                            x2={currentEdge.finishPos[0]}
-                            y2={currentEdge.finishPos[1]}
-                        />
+                        <svg key={key}>
+                            <line
+                                className={`${currentEdge.highlight ? "highlight" : ""}`}
+                                x1={currentEdge.startPos[0]}
+                                y1={currentEdge.startPos[1]}
+                                x2={currentEdge.finishPos[0]}
+                                y2={currentEdge.finishPos[1]}
+                            />
+                            <text
+                                x={centerx}
+                                y={centery}
+                                textAnchor="middle"
+                                dominantBaseline="middle"
+                            >
+                                {currentEdge.weight}
+                            </text>
+                        </svg>
                     );
                 })}
             </svg>
-        </section>
+        </section >
     );
 }
 
