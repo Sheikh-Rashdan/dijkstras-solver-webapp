@@ -1,7 +1,7 @@
 import "./Sidebar.css";
-import { MinusSquare, PlusSquare, Connector, CursorClick, Move } from '@boxicons/react';
+import { MinusSquare, PlusSquare, Connector, CursorClick, Move, ChevronRightCircle } from '@boxicons/react';
 
-function Sidebar({ currentModeState, selectedNodeState }) {
+function Sidebar({ currentModeState, selectedNodeState, runDijkstras }) {
     const [currentMode, setCurrentMode] = currentModeState;
     const [selectedNode, setSelectedNode] = selectedNodeState;
 
@@ -37,6 +37,10 @@ function Sidebar({ currentModeState, selectedNodeState }) {
                 <Connector pack="filled" />
                 {connectActive ? "Connecting" : "Connect"}
             </ToggleButton>
+            <button disabled={!nodeSelected || connectActive} onClick={runDijkstras}>
+                <ChevronRightCircle pack="filled" />
+                Start
+            </button>
         </section>
     );
 }
