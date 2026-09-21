@@ -45,6 +45,13 @@ class Node {
 }
 
 export function dijkstrasAlgorithm(nodes, startingNode) {
+
+  nodes.forEach(node => {
+    node.visited = false;
+    node.shortestDistance = null;
+    node.throughNode = null;
+  });
+
   let currentNode = startingNode;
   currentNode.shortestDistance = 0;
   currentNode.visited = true;
