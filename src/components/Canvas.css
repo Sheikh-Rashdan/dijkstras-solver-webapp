@@ -9,6 +9,10 @@
     cursor: cell;
 }
 
+.canvasSection.moveMode {
+    cursor: all-scroll;
+}
+
 line {
     stroke: var(--secondary);
     stroke-width: 0.1875rem;
@@ -20,8 +24,10 @@ line.highlight {
 }
 
 text {
-    font-size: 0.8rem;
-    transform: translateY(-0.8rem);
     fill: var(--text);
+    font-size: 0.8rem;
     font-weight: bold;
+
+    user-select: none;
+    transform: translateY(-0.8rem);
 }
