@@ -34,3 +34,16 @@ text {
     user-select: none;
     transform: translateY(-0.8rem);
 }
+
+.trashButton {
+    position: absolute;
+    bottom: 0.8rem;
+    right: 0.8rem;
+
+    cursor: pointer;
+    transition: transform 150ms ease-in-out;
+}
+
+.trashButton:hover {
+    transform: scale(1.1);
+}

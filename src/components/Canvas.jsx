@@ -1,4 +1,5 @@
 import "./Canvas.css";
+import { Trash } from "@boxicons/react";
 import Node from "../scripts/Node";
 
 import NodeDiv from "./NodeDiv";
@@ -88,6 +89,10 @@ function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightSt
         onPointerDown({ clientX: touch.clientX, clientY: touch.clientY });
     }
 
+    function clearNodes() {
+        setNodes([]);
+    }
+
     useEffect(() => {
         const newEdges = new Map();
         nodes.forEach(node => {
@@ -163,6 +168,7 @@ function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightSt
                     );
                 })}
             </svg>
+            <Trash className="trashButton" size="md" pack="filled" onClick={clearNodes} />
         </section >
     );
 }
