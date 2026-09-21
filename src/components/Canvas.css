@@ -18,3 +18,10 @@ line.highlight {
     stroke: var(--primary);
     stroke-width: 0.375rem;
 }
+
+text {
+    font-size: 0.8rem;
+    transform: translateY(-0.8rem);
+    fill: var(--text);
+    font-weight: bold;
+}
