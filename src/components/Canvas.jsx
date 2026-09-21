@@ -15,6 +15,9 @@ function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightSt
     const [edges, setEdges] = useState(new Map());
     const [draggingNode, setDraggingNode] = useState(null);
 
+    const [isPointerDown, setIsPointerDown] = useState(false);
+    const [pointerPos, setPointerPos] = useState(null);
+
     function interactWithCanvas({ nativeEvent }) {
         switch (currentMode) {
             case "add":
@@ -39,6 +42,16 @@ function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightSt
         setNodes(newNodes);
     }
 
+    function moveCanvas(x, y) {
+        if (isPointerDown && !draggingNode && currentMode === "move") {
+            const offsetX = x - pointerPos[0];
+            const offsetY = y - pointerPos[1];
+            nodes.forEach(node => node.pos = [node.pos[0] + offsetX, node.pos[1] + offsetY]);
+            setNodes([...nodes]);
+            setPointerPos([x, y]);
+        }
+    }
+
     function dragNode(x, y) {
         if (draggingNode === null) return;
 
@@ -52,16 +65,27 @@ function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightSt
 
     function onPointerMove({ clientX, clientY }) {
         dragNode(clientX, clientY);
+        moveCanvas(clientX, clientY)
     }
 
     function onTouchMove({ touches }) {
         const touch = touches[0];
-        const [x, y] = [touch.clientX, touch.clientY];
-        dragNode(x, y);
+        onPointerMove({ clientX: touch.clientX, clientY: touch.clientY });
     }
 
     function onPointerUp() {
+        setIsPointerDown(false);
         setDraggingNode(null);
+    }
+
+    function onPointerDown({ clientX, clientY }) {
+        setIsPointerDown(true);
+        setPointerPos([clientX, clientY])
+    }
+
+    function onTouchStart({ touches }) {
+        const touch = touches[0];
+        onPointerDown({ clientX: touch.clientX, clientY: touch.clientY });
     }
 
     useEffect(() => {
@@ -95,8 +119,10 @@ function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightSt
             onClick={interactWithCanvas}
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
+            onPointerDown={onPointerDown}
             onTouchMove={onTouchMove}
             onTouchEnd={onPointerUp}
+            onTouchStart={onTouchStart}
         >
             {nodes.map(node => {
                 return (
