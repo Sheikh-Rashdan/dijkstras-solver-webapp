@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import "./Sidebar.css";
 import { MinusSquare, PlusSquare, Connector, CursorClick, Move, ChevronRightCircle } from '@boxicons/react';
 
@@ -6,6 +7,8 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
     const [selectedNode, setSelectedNode] = selectedNodeState;
     const [inputWeight, setInputWeight] = inputWeightState;
     const [isWeightInputError, setIsWeightInputError] = isWeightInputErrorState;
+
+    const weightInputRef = useRef(null);
 
     const connectActive = currentMode === "connect";
     const nodeSelected = selectedNode !== undefined;
@@ -22,6 +25,14 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
         setInputWeight(weight);
         setIsWeightInputError(isError);
     }
+
+    useEffect(() => {
+        if (isWeightInputError) {
+            const target = weightInputRef.current;
+            if (target === null) return;
+            target.focus();
+        }
+    }, [isWeightInputError]);
 
     return (
         <section className="sidebarSection">
@@ -53,6 +64,7 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
                 {connectActive ? "Connecting" : "Connect"}
             </ToggleButton>
             <input
+                ref={weightInputRef}
                 className={`${isWeightInputError ? "error" : ""}`}
                 placeholder="Weight"
                 type="number"
