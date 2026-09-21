@@ -54,6 +54,7 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
                     Move
                 </ToggleButton>
             </div>
+            <hr />
             <ToggleButton
                 identifier={"connect"}
                 activeElementState={currentModeState}
@@ -72,6 +73,9 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
                 inputMode="numeric"
                 onChange={setWeightFromInput}
             />
+            <hr />
+            <p className="infoText">Selected: {selectedNode?.id ?? "None"}</p>
+            <hr />
             <button disabled={!nodeSelected || connectActive} onClick={runDijkstras}>
                 <ChevronRightCircle pack="filled" />
                 Start
