@@ -44,4 +44,34 @@ class Node {
   }
 }
 
+export function dijkstrasAlgorithm(nodes, startingNode) {
+  let currentNode = startingNode;
+  currentNode.shortestDistance = 0;
+  currentNode.visited = true;
+
+  while (true) {
+    let nextNode = null;
+    nodes.forEach(node => {
+      if (node.visited) return;
+
+      let currentDistance = currentNode.distanceTo(node);
+      if (currentDistance !== undefined) {
+        let newDistance = currentDistance + currentNode.shortestDistance;
+        if (node.shortestDistance === null || newDistance < node.shortestDistance) {
+          node.shortestDistance = newDistance;
+          node.throughNode = currentNode;
+        }
+      }
+
+      if (node.shortestDistance && (nextNode === null || node.shortestDistance < nextNode.shortestDistance)) {
+        nextNode = node;
+      }
+    });
+    if (nextNode === null) break;
+
+    nextNode.visited = true;
+    currentNode = nextNode;
+  }
+}
+
 export default Node;
