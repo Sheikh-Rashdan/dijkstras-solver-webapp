@@ -1,4 +1,5 @@
 import "./NodeDiv.css";
+import { resetDijkstras } from '../scripts/Node.jsx';
 
 function NodeDiv({ node, currentModeState, nodesState, selectedNodeState, setDraggingNode }) {
     const [currentMode, setCurrentMode] = currentModeState;
@@ -23,6 +24,9 @@ function NodeDiv({ node, currentModeState, nodesState, selectedNodeState, setDra
     }
 
     function removeNode() {
+
+        resetDijkstras(nodesState);
+
         node.neighbours.keys().forEach(neighbourNode => neighbourNode.removeNeighbour(node));
 
         const newNodes = nodes.filter(currentNode => {
@@ -36,6 +40,9 @@ function NodeDiv({ node, currentModeState, nodesState, selectedNodeState, setDra
     }
 
     function selectNode() {
+
+        resetDijkstras(nodesState);
+
         if (node.id === selectedNode?.id) {
             setSelectedNode(undefined);
             return;
@@ -45,6 +52,9 @@ function NodeDiv({ node, currentModeState, nodesState, selectedNodeState, setDra
     }
 
     function connectNode() {
+
+        resetDijkstras(nodesState);
+
         if (node.id === selectedNode.id) return;
         if (Array.from(node.neighbours.keys()).includes(selectedNode)) return;
 
