@@ -35,3 +35,12 @@
     background-color: var(--primary);
     cursor: default;
 }
+
+.infoText {
+    text-align: center;
+}
+
+hr {
+    margin: 0.1rem 3rem;
+    border-color: rgba(from var(--primary) r g b / 0.4);
+}
