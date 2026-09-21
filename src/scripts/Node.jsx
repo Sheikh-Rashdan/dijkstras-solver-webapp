@@ -44,7 +44,7 @@ class Node {
   }
 }
 
-export function dijkstrasAlgorithm(nodes, startingNode) {
+export function dijkstrasAlgorithm([nodes, setNodes], startingNode) {
 
   nodes.forEach(node => {
     node.visited = false;
@@ -79,6 +79,8 @@ export function dijkstrasAlgorithm(nodes, startingNode) {
     nextNode.visited = true;
     currentNode = nextNode;
   }
+
+  setNodes([...nodes]);
 }
 
 export default Node;

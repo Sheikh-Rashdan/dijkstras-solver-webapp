@@ -12,7 +12,7 @@ function App() {
   const selectedNodeState = useState();
 
   function runDijkstras() {
-    dijkstrasAlgorithm(nodesState[0], selectedNodeState[0]);
+    dijkstrasAlgorithm(nodesState, selectedNodeState[0]);
   }
 
   return (
