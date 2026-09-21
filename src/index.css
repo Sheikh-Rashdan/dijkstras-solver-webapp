@@ -83,3 +83,18 @@ input.error {
   box-shadow: 0 0 6px 0 var(--delete);
   opacity: 0.5;
 }
+
+@media screen and (min-width: 768px) {
+  .noScrollbar {
+    /* IE and Old Edge */
+    -ms-overflow-style: none;
+
+    /* Firefox */
+    scrollbar-width: none;
+  }
+
+  /* Chrome, Safari, and Opera */
+  .noScrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
