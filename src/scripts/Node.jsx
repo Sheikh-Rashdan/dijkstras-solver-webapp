@@ -26,6 +26,10 @@ class Node {
     node.addDirectionalNeighbour(this, distance);
   }
 
+  removeNeighbour(node) {
+    this.neighbours.delete(node);
+  }
+
   distanceTo(node) {
     return this.neighbours.get(node);
   }
