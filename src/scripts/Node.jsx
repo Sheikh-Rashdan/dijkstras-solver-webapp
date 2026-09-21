@@ -46,11 +46,7 @@ class Node {
 
 export function dijkstrasAlgorithm([nodes, setNodes], startingNode) {
 
-  nodes.forEach(node => {
-    node.visited = false;
-    node.shortestDistance = null;
-    node.throughNode = null;
-  });
+  resetDijkstras([nodes, setNodes]);
 
   let currentNode = startingNode;
   currentNode.shortestDistance = 0;
@@ -80,6 +76,15 @@ export function dijkstrasAlgorithm([nodes, setNodes], startingNode) {
     currentNode = nextNode;
   }
 
+  setNodes([...nodes]);
+}
+
+export function resetDijkstras([nodes, setNodes]) {
+  nodes.forEach(node => {
+    node.visited = false;
+    node.shortestDistance = null;
+    node.throughNode = null;
+  });
   setNodes([...nodes]);
 }
 
