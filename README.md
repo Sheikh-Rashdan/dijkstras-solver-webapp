@@ -13,6 +13,12 @@ https://sheikh-rashdan.github.io/dijkstras-solver-webapp/
 - Visualize the calculated shortest-path tree.
 - View and sort shortest distances by node or distance.
 
+## Gallery
+
+<p align="center">
+  <img width="1200" height="675" alt="dijkstras-solver-webapp" src="https://github.com/user-attachments/assets/f08e7ce2-44a7-4853-837c-666842f89721" />
+</p>
+
 ## Getting started
 
 ### Requirements
