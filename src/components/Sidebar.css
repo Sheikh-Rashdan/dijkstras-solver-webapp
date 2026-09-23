@@ -1,21 +1,33 @@
 .sidebarSection {
     display: flex;
-    align-items: stretch;
-    flex-direction: column;
-    height: 100%;
-    gap: 0.5rem;
-
     padding: 1rem;
+    gap: 0.5rem;
 
     background-image: linear-gradient(to bottom, transparent, rgba(from white r g b / 0.05));
     border: 1px solid var(--border);
     border-radius: 1rem;
+
+    @media screen and (min-width: 768px) {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    @media screen and (max-width:768px) {
+        flex-direction: row;
+        align-items: stretch;
+        overflow-x: auto;
+    }
 }
 
 .sidebarGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
+
+    @media screen and (max-width:768px) {
+        display: flex;
+        grid-template-columns: none;
+    }
 }
 
 .toggleButton {
