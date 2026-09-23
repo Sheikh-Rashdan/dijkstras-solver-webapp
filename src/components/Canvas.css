@@ -55,6 +55,8 @@ text {
     transition-duration: 150ms;
     transition-timing-function: ease-in-out;
 
+    animation: grow 150ms ease-in-out;
+
     @media screen and (max-width: 768px) {
         width: 1.8rem;
     }
