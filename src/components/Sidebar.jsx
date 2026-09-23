@@ -13,7 +13,7 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
     const weightInputRef = useRef(null);
 
     const connectActive = currentMode === "connect";
-    const nodeSelected = selectedNode !== undefined;
+    const nodeSelected = Boolean(selectedNode);
 
     function setWeightFromInput(e) {
         let weight = null;
