@@ -84,8 +84,8 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
                 {nodes.some(node => node.shortestDistance !== null)
                     ? <div className="resultsGrid noScrollbar">
                         <div className="resultsPair">
-                            <p style={{ "cursor": "pointer" }} onClick={() => setSortByDistance(false)}>Node</p>
-                            <p style={{ "cursor": "pointer" }} onClick={() => setSortByDistance(true)}>Distance</p>
+                            <p className="resultsColumnHeader" onClick={() => setSortByDistance(false)}>Node</p>
+                            <p className="resultsColumnHeader" onClick={() => setSortByDistance(true)}>Distance</p>
                         </div>
                         {(sortByDistance ? [...nodes].sort((a, b) => a.shortestDistance - b.shortestDistance) : nodes).map(node => {
                             if (!node.shortestDistance) return;

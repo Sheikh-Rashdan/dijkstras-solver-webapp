@@ -95,6 +95,17 @@
         font-weight: 500;
     }
 
+    .resultsColumnHeader {
+        cursor: pointer;
+        transition: transform 150ms ease-in-out;
+    }
+
+    .resultsColumnHeader:hover {
+        @media screen and (min-width: 768px) {
+            transform: scale(1.05);
+        }
+    }
+
     .result {
         font-size: 0.8rem;
     }
