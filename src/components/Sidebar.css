@@ -56,6 +56,10 @@
 .infoText {
     text-align: center;
     align-self: center;
+
+    @media screen and (max-width: 768px) {
+        width: 5rem;
+    }
 }
 
 .resultsContainer {
