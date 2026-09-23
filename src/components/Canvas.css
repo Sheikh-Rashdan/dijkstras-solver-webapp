@@ -41,9 +41,12 @@ text {
     right: 0.8rem;
 
     cursor: pointer;
-    transition: transform 150ms ease-in-out;
+    transition-property: transform, fill;
+    transition-duration: 150ms;
+    transition-timing-function: ease-in-out;
 }
 
 .trashButton:hover {
+    fill: var(--delete);
     transform: scale(1.1);
 }
