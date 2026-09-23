@@ -20,7 +20,7 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
         let isError = false;
         try {
             weight = parseFloat(e.target.value);
-            if (weight <= 0 || !weight) throw RangeError("Weight must be greater than 0.");
+            if (isNaN(weight) || weight < 0) throw RangeError("Weight must be greater than 0.");
         } catch (e) {
             isError = true;
         }

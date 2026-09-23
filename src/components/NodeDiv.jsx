@@ -60,8 +60,15 @@ function NodeDiv({ node, currentModeState, nodesState, inputWeight, isWeightInpu
             setIsWeightInputError(true);
             return;
         }
+
         if (node.id === selectedNode.id) return;
         if (node.neighbours.get(selectedNode) === inputWeight) return;
+
+        if (inputWeight === 0) {
+            node.removeNeighbour(selectedNode);
+            selectedNode.removeNeighbour(node);
+            return;
+        }
 
         node.addNeighbour(selectedNode, inputWeight);
 
