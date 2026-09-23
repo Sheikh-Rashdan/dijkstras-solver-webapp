@@ -7,8 +7,8 @@ function NodeDiv({ node, currentModeState, nodesState, inputWeight, isWeightInpu
     const [selectedNode, setSelectedNode] = selectedNodeState;
     const [isWeightInputError, setIsWeightInputError] = isWeightInputErrorState;
 
-    const left = `calc(${node.pos[0]}px - 1.5rem)`;
-    const top = `calc(${node.pos[1]}px - 1.5rem)`;
+    const left = `calc(${node.pos[0]}px)`;
+    const top = `calc(${node.pos[1]}px)`;
 
     function interactWithNode() {
         switch (currentMode) {
