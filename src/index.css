@@ -48,7 +48,6 @@ button {
   cursor: pointer;
 
   @media screen and (max-width: 768px) {
-    padding: 0 0.5rem;
     border-radius: 0.4rem;
   }
 }
@@ -78,7 +77,6 @@ input {
   transition-timing-function: ease-in-out;
 
   @media screen and (max-width: 768px) {
-    padding: 0;
     max-width: 8rem;
   }
 }
