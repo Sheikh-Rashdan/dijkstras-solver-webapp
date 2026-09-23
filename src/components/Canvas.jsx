@@ -11,6 +11,7 @@ let uniqueNodeNumber = 0;
 function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightState, isWeightInputErrorState }) {
     const [currentMode, setCurrentMode] = currentModeState;
     const [nodes, setNodes] = nodesState;
+    const [selectedNode, setSelectedNode] = selectedNodeState;
     const [inputWeight, setInputWeight] = inputWeightState;
 
     const [edges, setEdges] = useState(new Map());
@@ -90,6 +91,7 @@ function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightSt
     }
 
     function clearNodes() {
+        setSelectedNode(undefined);
         setNodes([]);
     }
 
