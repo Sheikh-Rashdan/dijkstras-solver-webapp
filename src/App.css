@@ -6,8 +6,8 @@
     min-height: calc(100svh - 6rem);
 
     @media screen and (max-width: 768px) {
-        grid-template-columns: none;
-        grid-template-rows: 1fr 4fr;
+        display: flex;
+        flex-direction: column-reverse;
 
         min-height: calc(100svh - 2rem);
     }
