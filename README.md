@@ -1,16 +1,58 @@
-# React + Vite
+# Dijkstra's Solver
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+An interactive visualizer built using React for building weighted graphs and finding the shortest distances from a selected node using Dijkstra's algorithm.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Create, remove, select, and move nodes on an interactive canvas.
+- Connect nodes with weighted, undirected edges.
+- Visualize the calculated shortest-path tree.
+- View and sort shortest distances by node or distance.
 
-## React Compiler
+## Getting started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Requirements
 
-## Expanding the Oxlint configuration
+- Node.js 18 or newer
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### Installation
+
+```bash
+npm install
+```
+
+### Development
+
+```bash
+npm run dev
+```
+
+Open the local URL printed by Vite in your browser.
+
+## Usage
+
+1. Select **Create**, then click the canvas to add nodes.
+2. Select a node with **Select**.
+3. Enter a non-negative edge weight, choose **Connect**, and select another node.
+4. Select the source node and click **Calculate**.
+5. Review the shortest distances in the results panel. Highlighted edges show the resulting shortest-path tree.
+
+Use **Move** to reposition the canvas or nodes. **Remove** lets you delete nodes and clear the graph with the trash button.
+
+## Scripts
+
+| Command             | Description                           |
+| ------------------- | ------------------------------------- |
+| `npm run dev`     | Start the Vite development server.    |
+| `npm run build`   | Create a production build.            |
+| `npm run preview` | Preview the production build locally. |
+| `npm run lint`    | Run Oxlint.                           |
+
+## Project structure
+
+```text
+src/
+  components/  Canvas, nodes, and sidebar UI
+  scripts/     Graph data structures and Dijkstra's algorithm
+  App.jsx      Application composition
+```
