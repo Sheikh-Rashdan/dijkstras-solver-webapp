@@ -46,6 +46,11 @@ button {
   border-radius: 0.8rem;
 
   cursor: pointer;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 0.5rem;
+    border-radius: 0.4rem;
+  }
 }
 
 button:hover {
