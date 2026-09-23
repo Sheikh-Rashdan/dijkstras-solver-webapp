@@ -2,6 +2,10 @@
 
 An interactive visualizer built using React for building weighted graphs and finding the shortest distances from a selected node using Dijkstra's algorithm.
 
+## Deployed Webapp
+
+https://sheikh-rashdan.github.io/dijkstras-solver-webapp/
+
 ## Features
 
 - Create, remove, select, and move nodes on an interactive canvas.
