@@ -1,11 +1,17 @@
 .canvasSection {
     position: relative;
+    min-height: 0;
 
     border: 1px solid var(--border);
     border-radius: 1rem;
 
     --gradient: rgba(from var(--border) r g b / 0.1);
     background: repeating-linear-gradient(to right, transparent, transparent 4rem, var(--gradient) 4rem, var(--gradient) 4.2rem), repeating-linear-gradient(to bottom, transparent, transparent 4rem, var(--gradient) 4rem, var(--gradient) 4.2rem);
+
+    @media screen and (max-width: 768px) {
+        flex: 1 1 auto;
+        min-height: 0;
+    }
 }
 
 .canvasSection.addMode {
