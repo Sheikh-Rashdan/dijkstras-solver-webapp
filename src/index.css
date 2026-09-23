@@ -76,6 +76,11 @@ input {
   transition-property: border-color, box-shadow, opacity;
   transition-duration: 200ms;
   transition-timing-function: ease-in-out;
+
+  @media screen and (max-width: 768px) {
+    padding: 0;
+    max-width: 8rem;
+  }
 }
 
 /* Chrome, Safari, Edge, Opera */
