@@ -40,41 +40,43 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
         <section className="sidebarSection">
             <div className="sidebarGrid">
                 <ToggleButton identifier="add" activeElementState={currentModeState}>
-                    <PlusSquare pack="filled" size="md" />
+                    <PlusSquare className="icon" pack="filled" size="md" />
                     Create
                 </ToggleButton>
                 <ToggleButton identifier="remove" activeElementState={currentModeState}>
-                    <MinusSquare pack="filled" size="md" />
+                    <MinusSquare className="icon" pack="filled" size="md" />
                     Remove
                 </ToggleButton>
                 <ToggleButton identifier="select" activeElementState={currentModeState}>
-                    <CursorClick pack="filled" size="md" />
+                    <CursorClick className="icon" pack="filled" size="md" />
                     Select
                 </ToggleButton>
                 <ToggleButton identifier="move" activeElementState={currentModeState}>
-                    <Move pack="filled" size="md" />
+                    <Move className="icon" pack="filled" size="md" />
                     Move
                 </ToggleButton>
             </div>
             <hr />
-            <ToggleButton
-                identifier={"connect"}
-                activeElementState={currentModeState}
-                horizontal={true}
-                disabled={!nodeSelected}
-            >
-                <Connector pack="filled" />
-                {connectActive ? "Connecting" : "Connect"}
-            </ToggleButton>
-            <input
-                ref={weightInputRef}
-                className={`${isWeightInputError ? "error" : ""}`}
-                placeholder="Weight"
-                type="number"
-                min="0"
-                inputMode="numeric"
-                onChange={setWeightFromInput}
-            />
+            <div className="connectGrid">
+                <ToggleButton
+                    identifier={"connect"}
+                    activeElementState={currentModeState}
+                    horizontal={true}
+                    disabled={!nodeSelected}
+                >
+                    <Connector pack="filled" />
+                    {connectActive ? "Connecting" : "Connect"}
+                </ToggleButton>
+                <input
+                    ref={weightInputRef}
+                    className={`${isWeightInputError ? "error" : ""}`}
+                    placeholder="Weight"
+                    type="number"
+                    min="0"
+                    inputMode="numeric"
+                    onChange={setWeightFromInput}
+                />
+            </div>
             <hr />
             <p className="infoText">Selected: {selectedNode?.id ?? "None"}</p>
             <div className="resultsContainer">
