@@ -20,6 +20,8 @@ function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightSt
     const [isPointerDown, setIsPointerDown] = useState(false);
     const [pointerPos, setPointerPos] = useState(null);
 
+    const showTrashButton = currentMode === "remove";
+
     function interactWithCanvas({ nativeEvent }) {
         switch (currentMode) {
             case "add":
@@ -170,7 +172,9 @@ function Canvas({ currentModeState, nodesState, selectedNodeState, inputWeightSt
                     );
                 })}
             </svg>
-            <Trash className="trashButton" size="md" pack="filled" onClick={clearNodes} />
+            {showTrashButton &&
+                <Trash className="trashButton" size="md" pack="filled" onClick={clearNodes} />
+            }
         </section >
     );
 }
