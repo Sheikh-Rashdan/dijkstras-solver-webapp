@@ -25,8 +25,9 @@
 }
 
 .node.removeMode:hover {
-    background-color: var(--delete);
     color: var(--text);
+    background-color: var(--delete);
+    box-shadow: 0 0 8px 0 var(--delete);
 }
 
 .node.selectMode:hover,
