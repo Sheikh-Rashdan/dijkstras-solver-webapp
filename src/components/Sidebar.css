@@ -89,6 +89,13 @@
     .result {
         font-size: 0.8rem;
     }
+
+}
+
+.connectGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
 }
 
 hr {
