@@ -11,6 +11,8 @@
     @media screen and (max-width: 768px) {
         flex: 1 1 auto;
         min-height: 0;
+
+        background: repeating-linear-gradient(to right, transparent, transparent 3rem, var(--gradient) 3rem, var(--gradient) 3.15rem), repeating-linear-gradient(to bottom, transparent, transparent 3rem, var(--gradient) 3rem, var(--gradient) 3.15rem);
     }
 }
 
