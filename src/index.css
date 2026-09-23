@@ -115,7 +115,6 @@ input.error {
   }
 }
 
-
 @keyframes grow {
   from {
     transform: scale(0);
@@ -123,5 +122,15 @@ input.error {
 
   to {
     transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
