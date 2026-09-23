@@ -25,6 +25,8 @@
 line {
     stroke: var(--secondary);
     stroke-width: 0.1875rem;
+
+    animation: fadeIn 150ms ease-in-out;
 }
 
 line.highlight {
@@ -43,6 +45,7 @@ text {
 
     user-select: none;
     transform: translateY(-0.8rem);
+    animation: fadeIn 150ms ease-in-out;
 }
 
 .trashButton {
