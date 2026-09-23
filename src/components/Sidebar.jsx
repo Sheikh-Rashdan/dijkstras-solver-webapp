@@ -101,7 +101,7 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
                     </div>
                     : "N/A"}
             </div>
-            <hr className="runButtonHr" />
+            <hr />
             <button disabled={!nodeSelected || connectActive} onClick={runDijkstras}>
                 <ChevronRightCircle pack="filled" />
                 Calculate

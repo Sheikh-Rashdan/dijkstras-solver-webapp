@@ -48,7 +48,7 @@
     overflow: hidden;
 
     padding: 0.5rem;
-    margin: 0 0.5rem;
+    margin: auto 0.5rem;
 
     background-color: rgba(from var(--secondary) r g b / 0.1);
     border: 1px solid rgba(from var(--secondary) r g b / 0.6);
@@ -77,10 +77,6 @@
     .result {
         font-size: 0.8rem;
     }
-}
-
-.runButtonHr {
-    margin-top: auto;
 }
 
 hr {
