@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Sidebar.css";
-import { MinusSquare, PlusSquare, Connector, CursorClick, Move, ChevronRightCircle } from '@boxicons/react';
+import { MinusSquare, PlusSquare, Connector, CursorClick, Move, ChevronRightCircle, CaretDown, CaretRight } from '@boxicons/react';
 
 function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeightInputErrorState, nodesState, runDijkstras }) {
     const [currentMode, setCurrentMode] = currentModeState;
@@ -9,7 +9,8 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
     const [isWeightInputError, setIsWeightInputError] = isWeightInputErrorState;
     const [nodes, setNodes] = nodesState;
 
-    const [sortByDistance, setSortByDistance] = useState(false);
+    const sortByDistanceState = useState(false);
+    const [sortByDistance, setSortByDistance] = sortByDistanceState;
     const weightInputRef = useRef(null);
 
     const connectActive = currentMode === "connect";
@@ -84,8 +85,20 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
                 {nodes.some(node => node.shortestDistance !== null)
                     ? <div className="resultsGrid noScrollbar">
                         <div className="resultsPair">
-                            <p className="resultsColumnHeader" onClick={() => setSortByDistance(false)}>Node</p>
-                            <p className="resultsColumnHeader" onClick={() => setSortByDistance(true)}>Distance</p>
+                            <ToggleButton className="resultsColumnHeader" identifier={false} activeElementState={sortByDistanceState} horizontal={true}>
+                                {sortByDistance ?
+                                    <CaretRight className="icon" pack="filled" /> :
+                                    <CaretDown className="icon" pack="filled" />
+                                }
+                                Node
+                            </ToggleButton>
+                            <ToggleButton className="resultsColumnHeader" identifier={true} activeElementState={sortByDistanceState} horizontal={true}>
+                                {sortByDistance ?
+                                    <CaretDown className="icon" pack="filled" /> :
+                                    <CaretRight className="icon" pack="filled" />
+                                }
+                                Distance
+                            </ToggleButton>
                         </div>
                         {(sortByDistance ? [...nodes].sort((a, b) => a.shortestDistance - b.shortestDistance) : nodes).map(node => {
                             if (!node.shortestDistance) return;

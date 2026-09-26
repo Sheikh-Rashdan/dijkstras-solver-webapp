@@ -96,14 +96,26 @@
     }
 
     .resultsColumnHeader {
-        cursor: pointer;
-        transition: transform 150ms ease-in-out;
+        padding: 0.1rem 0.3rem;
+        margin: 0.5rem auto;
+
+        background-color: rgba(from var(--text) r g b / 0.1);
+        border-radius: 0.5rem;
+        font-size: 0.8rem;
+
+
+        .icon {
+            width: 1rem;
+        }
     }
 
     .resultsColumnHeader:hover {
-        @media screen and (min-width: 768px) {
-            transform: scale(1.05);
-        }
+        background-color: rgba(from var(--text) r g b / 0.25);
+    }
+
+    .resultsColumnHeader.active {
+        background-color: var(--secondary);
+        cursor: default;
     }
 
     .result {
