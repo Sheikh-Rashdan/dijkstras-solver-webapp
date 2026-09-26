@@ -91,6 +91,10 @@
         grid-template-columns: 1fr 1fr;
     }
 
+    .resultsPair:last-of-type {
+        margin-bottom: 2rem;
+    }
+
     .resultsTitle {
         font-weight: 500;
     }
