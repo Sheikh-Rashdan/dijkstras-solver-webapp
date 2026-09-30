@@ -6,14 +6,19 @@
     border-radius: 1rem;
 
     --gradient: rgba(from var(--border) r g b / 0.1);
-    background: repeating-linear-gradient(to right, transparent, transparent 4rem, var(--gradient) 4rem, var(--gradient) 4.2rem), repeating-linear-gradient(to bottom, transparent, transparent 4rem, var(--gradient) 4rem, var(--gradient) 4.2rem);
+    --grid-spacing: 4rem;
+    --grid-width: 0.2rem;
 
     @media screen and (max-width: 768px) {
         flex: 1 1 auto;
         min-height: 0;
 
-        background: repeating-linear-gradient(to right, transparent, transparent 3rem, var(--gradient) 3rem, var(--gradient) 3.15rem), repeating-linear-gradient(to bottom, transparent, transparent 3rem, var(--gradient) 3rem, var(--gradient) 3.15rem);
+        --grid-spacing: 3.1rem;
+        --grid-width: 0.15rem;
     }
+
+    background: repeating-linear-gradient(to right, transparent, transparent var(--grid-spacing), var(--gradient) var(--grid-spacing), var(--gradient) calc(var(--grid-spacing) + var(--grid-width))),
+    repeating-linear-gradient(to bottom, transparent, transparent var(--grid-spacing), var(--gradient) var(--grid-spacing), var(--gradient) calc(var(--grid-spacing) + var(--grid-width)));
 }
 
 .canvasSection.addMode {
