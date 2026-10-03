@@ -60,24 +60,26 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
             </div>
             <hr />
             <div className="connectGrid">
-                <ToggleButton
-                    identifier={"connect"}
-                    activeElementState={currentModeState}
-                    horizontal={true}
-                    disabled={!nodeSelected}
-                >
-                    <Link pack="filled" />
-                    {connectActive ? "Connecting" : "Connect"}
-                </ToggleButton>
-                <ToggleButton
-                    identifier={"disconnect"}
-                    activeElementState={currentModeState}
-                    horizontal={true}
-                    disabled={!nodeSelected}
-                >
-                    <LinkBreak pack="filled" />
-                    {disconnectActive ? "Disconnecting" : "Disconnect"}
-                </ToggleButton>
+                <div className="connectButtonsContainer">
+                    <ToggleButton
+                        identifier={"connect"}
+                        activeElementState={currentModeState}
+                        horizontal={true}
+                        disabled={!nodeSelected}
+                    >
+                        <Link pack="filled" />
+                        Connect
+                    </ToggleButton>
+                    <ToggleButton
+                        identifier={"disconnect"}
+                        activeElementState={currentModeState}
+                        horizontal={true}
+                        disabled={!nodeSelected}
+                    >
+                        <LinkBreak pack="filled" />
+                        Disconnect
+                    </ToggleButton>
+                </div>
                 <input
                     ref={weightInputRef}
                     className={`${isWeightInputError ? "error" : ""}`}

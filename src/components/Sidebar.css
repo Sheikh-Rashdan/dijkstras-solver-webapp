@@ -53,6 +53,12 @@
     cursor: default;
 }
 
+.connectButtonsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
 .infoText {
     text-align: center;
     align-self: center;
