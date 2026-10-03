@@ -65,7 +65,6 @@ function NodeDiv({ node, currentModeState, nodesState, inputWeight, isWeightInpu
         if (node.neighbours.get(selectedNode) === inputWeight) return;
 
         if (inputWeight === 0) {
-            node.removeNeighbour(selectedNode);
             selectedNode.removeNeighbour(node);
             return;
         }

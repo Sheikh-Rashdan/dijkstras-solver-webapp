@@ -28,6 +28,7 @@ class Node {
 
   removeNeighbour(node) {
     this.neighbours.delete(node);
+    node.neighbours.delete(this);
   }
 
   distanceTo(node) {
