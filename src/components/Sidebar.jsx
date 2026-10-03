@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./Sidebar.css";
-import { MinusSquare, PlusSquare, Connector, CursorClick, Move, ChevronRightCircle, CaretDown, CaretRight } from '@boxicons/react';
+import { MinusSquare, PlusSquare, CursorClick, Move, ChevronRightCircle, CaretDown, CaretRight, LinkBreak, Link } from '@boxicons/react';
 
 function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeightInputErrorState, nodesState, runDijkstras }) {
     const [currentMode, setCurrentMode] = currentModeState;
@@ -14,6 +14,7 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
     const weightInputRef = useRef(null);
 
     const connectActive = currentMode === "connect";
+    const disconnectActive = currentMode === "disconnect";
     const nodeSelected = Boolean(selectedNode);
 
     function setWeightFromInput(e) {
@@ -65,8 +66,17 @@ function Sidebar({ currentModeState, selectedNodeState, inputWeightState, isWeig
                     horizontal={true}
                     disabled={!nodeSelected}
                 >
-                    <Connector pack="filled" />
+                    <Link pack="filled" />
                     {connectActive ? "Connecting" : "Connect"}
+                </ToggleButton>
+                <ToggleButton
+                    identifier={"disconnect"}
+                    activeElementState={currentModeState}
+                    horizontal={true}
+                    disabled={!nodeSelected}
+                >
+                    <LinkBreak pack="filled" />
+                    {disconnectActive ? "Disconnecting" : "Disconnect"}
                 </ToggleButton>
                 <input
                     ref={weightInputRef}
