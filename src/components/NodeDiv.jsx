@@ -21,6 +21,9 @@ function NodeDiv({ node, currentModeState, nodesState, inputWeight, isWeightInpu
             case "connect":
                 connectNode();
                 break;
+            case "disconnect":
+                disconnectNode();
+                break;
         }
     }
 
@@ -70,6 +73,18 @@ function NodeDiv({ node, currentModeState, nodesState, inputWeight, isWeightInpu
         }
 
         node.addNeighbour(selectedNode, inputWeight);
+
+        const newNodes = [...nodes];
+        setNodes(newNodes);
+    }
+
+    function disconnectNode() {
+
+        resetDijkstras(nodesState);
+
+        if (node.id === selectedNode.id) return;
+
+        selectedNode.removeNeighbour(node);
 
         const newNodes = [...nodes];
         setNodes(newNodes);
