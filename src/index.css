@@ -78,7 +78,7 @@ input {
   transition-timing-function: ease-in-out;
 
   @media screen and (max-width: 768px) {
-    max-width: 8rem;
+    max-width: 15rem;
   }
 }
 
